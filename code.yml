@@ -1,0 +1,61 @@
+btn-10:
+    slot: 10
+    view_requirement:
+      requirements:
+        - type: placeholder
+          placeholder: "%checkitem_mat:stone%"
+          amount: 64
+          action: SUPERIOR_OR_EQUAL
+        - type: permission
+          permission: "shop.buy"
+    click_requirement:
+      sell:
+        clicks:
+          - all
+        requirements:
+          - type: placeholder
+            placeholder: "%%checkitem_mat:stone%"
+            amount: 64
+            action: SUPERIOR_OR_EQUAL
+          - type: permission
+            permission: "shop.buy"
+        deny:
+          - type: sound
+            sound: VILLAGER_NO
+            pitch: 1.5f
+            volume: 0.5f
+        success:
+          - type: sound
+            sound: ENTITY_COW_HURT
+            pitch: 1.5f
+            volume: 0.5f
+          - type: console_command
+            commands:
+              - "minecraft:clear %player% minecraft:stone 64"
+              - "eco give %player% 500"
+    refreshOnClick: true
+    item:
+      material: cobblestone
+      amount: 64
+      lore:
+        - ''
+        - '&8> &7Ваш баланс: &6%vault_eco_balance_fixed%$'
+        - '&8> &7Стоимость продажи: &6500$'
+        - ''
+        - '  &8[&6ЛКМ&8] &7- Продать'
+    else:
+      sound: VILLAGER_NO
+      pitch: 1.5f
+      volume: 0.5f
+      messages:
+        - "&cУ вас недостаточно ресурсов"
+      item:
+        material: stone
+        amount: 64
+        lore:
+          - ''
+          - '&8> &7Ваш баланс: &6%vault_eco_balance_fixed%$'
+          - '&8> &7Стоимость продажи: &6500$'
+          - '&8> &4Недостаточно ресурсов'
+          - ''
+          - '  &8[&6ЛКМ&8] &7- продать'
